@@ -1,6 +1,7 @@
 FROM python:3.10-alpine                
 ADD server.py .
-ADD requirements.txt .
+ADD requirements.txt .  
+#per far funzionare server.py devo inserire nel container flask in requirements e templates che contengono i file html
 RUN pip install -r requirements.txt
 RUN mkdir ./templates
 ADD ./templates/index.html ./templates
