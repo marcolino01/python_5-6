@@ -3,12 +3,12 @@ from flask import Flask, render_template
 api = Flask("__name__")
 
 
-@api.route('/', methods=['GET'])
+@api.route('/abc', methods=['GET'])
 def index():
     return render_template('index.html')
 
 @api.route('/ciao', methods=['GET'])
-def index():
+def ciao():
     return render_template('index2.html')
 
 
