@@ -17,4 +17,4 @@ sniff(iface="eth0", filter="tcp", prn=process_pkt)
 #prn creiamo una procedura e lui chiamerà quella
 #pkt è una struttura dati che contiene tutte le info del layer IP pckt[IP]
 #pkt[IP].src -> sorgente pkt[IP].dst -> destinazione
-#pckt[TCP] abbiamo tutte le info tcp (porte)
+#pckt[TCP] abbiamo tutte le info tcp (porte) pkt[TCP].sport -> sorgente pkt[TCP].dport -> destinazione
