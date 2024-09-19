@@ -1,4 +1,3 @@
-
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 import base64
@@ -17,43 +16,18 @@ key_pair = RSA.import_key(sPriv)
 public_key = RSA.import_key(sPub)
 sPubCollega = "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAodRTArmVwLiEj9KGI0In\nHWTUM4N7jru3qfClugLG3RbueugS/xTup4FzbUUIT7AQFwU4Y+6riBjhImKiVqtr\n7f4msIyuufyT3u3/Tta3Y8EwEh7jRMDWgIKu1OZE5kQBIig7LAW9sKpazOeyLCgQ\nAEg6yWQSPR3TF6Y5/9Yhy8YP+oNsAk2SiVFJNadgfVX49QRJhn2/IEtppeRZDyMX\npWNkVCGRDGBaLM/jU4od8hmmXCXYpKKNUUY6U0rk8emK3b6J/xad5UoKcPzGpSg6\nGpam0NeMLe5FmtGahCGBw/6GVX/UWtt7Rtr1YxaNzABMD5QWFle5tuc9ogKTBHcg\nEwIDAQAB\n-----END PUBLIC KEY-----"
 
-
-# Function to encrypt message
+# Funzione per codificare il messaggio 
 def encrypt_message(message, pub_key):
     cipher = PKCS1_OAEP.new(pub_key)
     encrypted_message = cipher.encrypt(message.encode("utf-8"))
     return base64.b64encode(encrypted_message).decode("utf-8")
 
 
-# Function to decrypt message
+# Funzione per decodificare il messaggio
 def decrypt_message(encrypted_message, priv_key):
     cipher = PKCS1_OAEP.new(priv_key)
     decrypted_message = cipher.decrypt(base64.b64decode(encrypted_message))
     return decrypted_message.decode("utf-8")
-
-
-# Example usage
-#message = "This is a secret message"
-#encrypted_message = encrypt_message(message, public_key)
-#decrypted_message = decrypt_message(encrypted_message, key_pair)
-
-#print("Original Message:", message)
-#print("Encrypted Message:", encrypted_message)
-#print("Decrypted Message:", decrypted_message)
-
-
-
-# Per importare una chiave pubblica
-#keyDER = base64.b64decode(public_key)
-#seq = base64.asn1.DerSequence()
-#seq.decode(keyDER)
-#keyPub = RSA.construct((seq[0], seq[1]))
-
-
-#key_pair = RSA.generate(2048)
-#print(key_pair.export_key())
-#public_key = key_pair.public_key()
-#print(public_key.export_key())
 
 #scrittura del messaggio cifrato da mandare al collega tramite la sua chiave pubblica
 public_key_collega = RSA.import_key(sPubCollega)
