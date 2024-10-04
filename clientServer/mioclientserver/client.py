@@ -1,6 +1,6 @@
 import requests,json
 import sys
-from server import GestisciAddCittadino, GestisciRemoveCittadino, GestisciUpdateCittadino
+from clientServer.mioclientserver.server import GestisciAddCittadino, GestisciRemoveCittadino, GestisciUpdateCittadino
 
 base_url = "http://127.0.0.1:8080"
 
