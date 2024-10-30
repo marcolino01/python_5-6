@@ -138,13 +138,22 @@ def login():
     content_type = request.headers.get('Content-Type')
     print("Ricevuta chiamata " + content_type)
     if (content_type == 'application/json'):
-        with open('utenti.json') as json_file:
-            user = json.load(json_file)
         for key, value in request.json.items():
-            if key in user:
-                if user[key][0] == value[0]:
-                    return "True"
-        return "Nome utente o password non trovati"
+            sQuery = f"select * from utente where username = '{key}', passw = '{value[0]}') values ('{key}','{value[0]}'"
+            print(sQuery)
+            numRecord = db.read_in_db(mydb, sQuery)
+            if numRecord == 1:
+                print("Login terminato correttamente")
+                return "True"
+            elif numRecord == 0:
+                print("Credenziali errate")
+                return "False"
+            elif numRecord <= -1:
+                print("Dati errrati")
+                return "False"
+            else:
+                print("Attenzione :attacco in corso")
+                return "False"
     else:
         return 'Content-Type not supported!'
 
@@ -155,17 +164,18 @@ def Registrazione():
     if (content_type == 'application/json'):
         #verificare se username è nella tabella utenti 
         #altrimenti facciamo la insert
-        with open('utenti.json') as json_file:
-            user = json.load(json_file)        
         for key, value in request.json.items():
-            if key not in user:
-                request.json[key].append(random.randint(0,1))
-                user |= request.json  #|= appende un nuovo elemento al dizionario
-                with open('utenti.json', 'w') as json_file:
-                    json.dump(user, json_file)
+            sQuery = f"insert into utente (username, passw, stato) values ('{key}','{value[0]}', {random.randint(0,1)})"
+            #prende due parametri la connessione e la query
+            iRetValue = db.write_in_db(mydb, sQuery)
+            if iRetValue == -2:
+                return "nome utente non trovato"
+            elif iRetValue == 0:
+                return "Registrazione avvenuta con successo"
             else:
-                return "Nome utente già in uso"
-        return "Registrazione avvenuta con successo"
+                return "Errore non gestito nella registrazione"
+
+        return "Errore richiesta non conforme" 
     else:
         return 'Content-Type not supported!'
 

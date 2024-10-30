@@ -61,6 +61,7 @@ while True:
             try:
                 response = requests.post(api_url,json=jsonDataRequest, verify=False)
                 print(response)
+                print(response.content)
             except:
                 print("Problemi di comunicazione con il server, riprova più tardi")
         elif login == '3':
