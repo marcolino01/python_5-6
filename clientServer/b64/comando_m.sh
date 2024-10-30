@@ -1,0 +1,1 @@
+base64 -1 image1.jpeg -o image2.b64

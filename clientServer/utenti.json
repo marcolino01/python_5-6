@@ -1,0 +1,27 @@
+{
+    "utente1": {
+        "username":"Marco",
+        "password":"cfvgb",
+        "priveligi":"r"
+    },
+    "utente2": {
+        "username":"Roberta",
+        "password":"dfghj",
+        "priveligi":"r"
+    },
+    "utente3": {
+        "username":"Flavio",
+        "password":"asdf",
+        "priveligi":"w"
+    },
+    "utente4": {
+        "username":"Miriam",
+        "password":"wertyt",
+        "priveligi":"w"
+    },
+    "utente5": {
+        "username":"Michelangelo",
+        "password":"edcrfv",
+        "priveligi":"r"
+    }
+}
